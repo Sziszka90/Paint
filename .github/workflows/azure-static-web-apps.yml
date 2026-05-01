@@ -1,4 +1,7 @@
+
 name: Azure Static Web Apps CI/CD
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 on:
   push:
@@ -14,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Angular App
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true
           lfs: false
@@ -49,7 +52,7 @@ jobs:
       - name: List build artifact contents
         run: |
           echo "Listing dist/paint-app:"
-          ls
+          ls dist/paint-app
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
       - name: Get Id Token
