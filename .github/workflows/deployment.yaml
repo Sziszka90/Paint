@@ -136,8 +136,7 @@ jobs:
           1. Check the failed run linked above
           2. Review the build and test output
           3. Push a fix to \`$BRANCH\`" \
-            --assignee "Copilot" \
-            --label "bug"
+            --label "bug,agent:copilot"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
