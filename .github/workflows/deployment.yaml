@@ -113,8 +113,7 @@ jobs:
     permissions:
       issues: write
     steps:
-      - name: Create GitHub issue
-        id: create-issue
+      - name: Create GitHub issue and trigger Copilot
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
@@ -137,19 +136,11 @@ jobs:
           1. Check the failed run linked above
           2. Review the build and test output
           3. Push a fix to \`$BRANCH\`" \
-            --label "bug,agent:copilot")
-          echo "issue_url=$ISSUE_URL" >> $GITHUB_OUTPUT
+            --label "bug")
           ISSUE_NUMBER=$(echo "$ISSUE_URL" | grep -oE '[0-9]+$')
-          echo "issue_number=$ISSUE_NUMBER" >> $GITHUB_OUTPUT
-
-      - name: Assign issue to Copilot agent
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-          REPO: ${{ github.repository }}
-        run: |
-          gh api repos/$REPO/issues/${{ steps.create-issue.outputs.issue_number }}/assignees \
-            -X POST \
-            -f 'assignees[]=Copilot'
+          gh issue comment $ISSUE_NUMBER \
+            --repo "$REPO" \
+            --body "@copilot Please investigate this CI build failure and create a PR with a fix."
 
 
   close_pull_request_job:
