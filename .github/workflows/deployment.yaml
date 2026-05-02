@@ -30,12 +30,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-
-      - name: Intentionally fail build for test
-        run: |
-          echo "This step will fail to test issue creation"
-          exit 1
-
       - name: Build Angular app
         run: npx ng build
 
