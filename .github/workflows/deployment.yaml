@@ -113,7 +113,8 @@ jobs:
     permissions:
       issues: write
     steps:
-      - name: Create GitHub issue and assign to Copilot
+      - name: Create GitHub issue
+        id: create-issue
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
@@ -121,8 +122,7 @@ jobs:
           COMMIT_SHA: ${{ github.sha }}
           BRANCH: ${{ github.ref_name }}
         run: |
-
-          gh issue create \
+          ISSUE_URL=$(gh issue create \
             --repo "$REPO" \
             --title "CI build failed on $BRANCH (${{ github.run_number }})" \
             --body "## Build Failure
@@ -137,7 +137,19 @@ jobs:
           1. Check the failed run linked above
           2. Review the build and test output
           3. Push a fix to \`$BRANCH\`" \
-            --label "bug,agent:copilot"
+            --label "bug,agent:copilot")
+          echo "issue_url=$ISSUE_URL" >> $GITHUB_OUTPUT
+          ISSUE_NUMBER=$(echo "$ISSUE_URL" | grep -oE '[0-9]+$')
+          echo "issue_number=$ISSUE_NUMBER" >> $GITHUB_OUTPUT
+
+      - name: Assign issue to Copilot agent
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh api repos/$REPO/issues/${{ steps.create-issue.outputs.issue_number }}/assignees \
+            -X POST \
+            -f 'assignees[]=Copilot'
 
 
   close_pull_request_job:
