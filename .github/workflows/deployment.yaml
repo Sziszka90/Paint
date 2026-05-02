@@ -121,7 +121,7 @@ jobs:
           COMMIT_SHA: ${{ github.sha }}
           BRANCH: ${{ github.ref_name }}
         run: |
-          gh issue create \
+          ISSUE_NUMBER=$(gh issue create \
             --repo "$REPO" \
             --title "CI build failed on $BRANCH (${{ github.run_number }})" \
             --body "## Build Failure
@@ -137,7 +137,14 @@ jobs:
           2. Review the build and test output
           3. Push a fix to \`$BRANCH\`" \
             --label "bug,agent:copilot" \
-            --assignee "Copilot"
+            --json number -q '.number')
+
+      - name: 'Auto-assign issue to Copilot'
+        uses: pozil/auto-assign-issue@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          assignees: Copilot
+          numOfAssignee: 1
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
