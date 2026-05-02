@@ -139,12 +139,6 @@ jobs:
           3. Push a fix to \`$BRANCH\`" \
             --label "bug,agent:copilot"
 
-      - name: 'Auto-assign issue to Copilot'
-        uses: pozil/auto-assign-issue@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          assignees: Copilot
-          numOfAssignee: 1
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
