@@ -8,11 +8,14 @@
       "command": "npx",
       "args": [
         "-y",
+        "dotenv-cli",
+        "-e",
+        ".env",
+        "--",
+        "npx",
+        "-y",
         "@modelcontextprotocol/server-github"
-      ],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
-      }
+      ]
     },
     "awesome-copilot": {
       "command": "npx",
