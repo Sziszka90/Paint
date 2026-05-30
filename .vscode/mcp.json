@@ -6,24 +6,14 @@
     },
     "github": {
       "command": "npx",
-      "args": [
-        "-y",
-        "dotenv-cli",
-        "-e",
-        ".env",
-        "--",
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-github"
-      ]
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      }
     },
     "awesome-copilot": {
       "command": "npx",
-      "args": [
-        "-y",
-        "awesome-copilot-mcp",
-        "start"
-      ]
+      "args": ["-y", "awesome-copilot-mcp", "start"]
     }
   }
 }

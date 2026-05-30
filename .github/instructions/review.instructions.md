@@ -1,3 +1,7 @@
+---
+applyTo: "**"
+---
+
 # Copilot Review Instructions
 
 Use these instructions when reviewing pull requests in this repository.
@@ -14,6 +18,9 @@ Use these instructions when reviewing pull requests in this repository.
 2. Security issues such as unsafe DOM usage, leaking secrets, or weak input handling.
 3. Performance issues such as unnecessary re-renders, subscriptions, or heavy template work.
 4. Readability and maintainability problems that make future changes risky.
+
+During PR review, also apply rules from Angular coding standards:
+- see angular.instructions.md
 
 ## Review Style
 
