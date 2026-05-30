@@ -130,8 +130,6 @@ jobs:
           2. Review the build and test output
           3. Push a fix to \`$BRANCH\`" \
             --label "bug")
-          ISSUE_NUMBER=$(echo "$ISSUE_URL" | grep -oE '[0-9]+$')
-          gh issue edit $ISSUE_NUMBER --repo "$REPO" --add-assignee "@copilot"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
