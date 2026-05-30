@@ -1,0 +1,116 @@
+:host {
+	display: block;
+	min-height: 100dvh;
+}
+
+.paint-shell {
+	min-height: 100dvh;
+	padding: 24px;
+	display: grid;
+	grid-template-rows: auto 1fr;
+	gap: 16px;
+	background:
+		radial-gradient(circle at top left, #d9f0ff 0%, transparent 28%),
+		radial-gradient(circle at top right, #ffe4c7 0%, transparent 24%),
+		linear-gradient(180deg, #f7fbff 0%, #edf4ff 100%);
+}
+
+.toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: end;
+	gap: 16px;
+	padding: 16px 20px;
+	border-radius: 20px;
+	background: rgba(255, 255, 255, 0.86);
+	border: 1px solid rgba(16, 42, 67, 0.08);
+	box-shadow: 0 20px 40px rgba(16, 42, 67, 0.12);
+}
+
+.toolbar__group {
+	display: grid;
+	gap: 8px;
+	color: #102a43;
+	font: 600 0.95rem/1.2 'Avenir Next', 'Segoe UI', sans-serif;
+}
+
+.toolbar__group--tools {
+	min-width: min(320px, 100%);
+}
+
+.toolbar__group--wide {
+	min-width: min(280px, 100%);
+	flex: 1;
+}
+
+.tool-picker {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.tool-picker__button {
+	border: 1px solid rgba(16, 42, 67, 0.14);
+	border-radius: 999px;
+	min-width: 48px;
+	padding: 10px 14px;
+	background: rgba(255, 255, 255, 0.9);
+	color: #102a43;
+	font-size: 1.15rem;
+	line-height: 1;
+	cursor: pointer;
+	transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+.tool-picker__button--active {
+	background: #102a43;
+	color: #ffffff;
+	border-color: #102a43;
+}
+
+.toolbar__button {
+	border: 0;
+	border-radius: 999px;
+	padding: 12px 18px;
+	background: #102a43;
+	color: #fff;
+	font-size: 1.15rem;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.canvas-frame {
+	min-height: 0;
+	padding: 18px;
+	border-radius: 24px;
+	background: rgba(255, 255, 255, 0.72);
+	border: 1px solid rgba(16, 42, 67, 0.08);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 24px 60px rgba(16, 42, 67, 0.12);
+}
+
+.paint-surface {
+	display: block;
+	width: 100%;
+	height: min(78dvh, 900px);
+	border-radius: 16px;
+	background:
+		linear-gradient(90deg, rgba(16, 42, 67, 0.03) 1px, transparent 1px) 0 0 / 24px 24px,
+		linear-gradient(rgba(16, 42, 67, 0.03) 1px, transparent 1px) 0 0 / 24px 24px,
+		#ffffff;
+	touch-action: none;
+	cursor: crosshair;
+}
+
+@media (max-width: 700px) {
+	.paint-shell {
+		padding: 14px;
+	}
+
+	.toolbar {
+		padding: 14px;
+	}
+
+	.paint-surface {
+		height: 68dvh;
+	}
+}

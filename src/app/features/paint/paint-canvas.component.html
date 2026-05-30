@@ -1,0 +1,91 @@
+<section class="paint-shell">
+  <header class="toolbar">
+    <div class="toolbar__group toolbar__group--tools">
+      <span>Tool</span>
+      <div class="tool-picker" role="group" aria-label="Drawing tools">
+        <button
+          type="button"
+          class="tool-picker__button"
+          [class.tool-picker__button--active]="isToolSelected('brush')"
+          (click)="selectTool('brush')"
+          aria-label="Brush"
+          title="Brush"
+        >
+          ✏️
+        </button>
+        <button
+          type="button"
+          class="tool-picker__button"
+          [class.tool-picker__button--active]="isToolSelected('eraser')"
+          (click)="selectTool('eraser')"
+          aria-label="Rubber"
+          title="Rubber"
+        >
+          🩹
+        </button>
+        <button
+          type="button"
+          class="tool-picker__button"
+          [class.tool-picker__button--active]="isToolSelected('square')"
+          (click)="selectTool('square')"
+          aria-label="Square"
+          title="Square"
+        >
+          ⬜
+        </button>
+        <button
+          type="button"
+          class="tool-picker__button"
+          [class.tool-picker__button--active]="isToolSelected('circle')"
+          (click)="selectTool('circle')"
+          aria-label="Circle"
+          title="Circle"
+        >
+          ⚪
+        </button>
+      </div>
+    </div>
+
+    <div class="toolbar__group">
+      <label for="brush-color">Color</label>
+      <input
+        id="brush-color"
+        type="color"
+        [value]="brushColor()"
+        (input)="updateBrushColor(($any($event.target).value))"
+      />
+    </div>
+
+    <div class="toolbar__group toolbar__group--wide">
+      <label for="brush-size">Brush {{ brushSize() }} px</label>
+      <input
+        id="brush-size"
+        type="range"
+        min="1"
+        max="32"
+        [value]="brushSize()"
+        (input)="updateBrushSize(($any($event.target).value))"
+      />
+    </div>
+
+    <button
+      type="button"
+      class="toolbar__button"
+      (click)="clearCanvas()"
+    >
+      Clear canvas
+    </button>
+  </header>
+
+  <div class="canvas-frame">
+    <canvas
+      #canvas
+      class="paint-surface"
+      (pointerdown)="startStroke($event)"
+      (pointermove)="draw($event)"
+      (pointerup)="endStroke($event)"
+      (pointerleave)="endStroke($event)"
+      (pointercancel)="endStroke($event)"
+    ></canvas>
+  </div>
+</section>

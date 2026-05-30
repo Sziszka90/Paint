@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
-import { PaintCanvasBase } from './features/paint/paint-canvas.base';
+import { PaintCanvasBase } from './paint-canvas.base';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-paint-canvas',
   standalone: true,
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  templateUrl: './paint-canvas.component.html',
+  styleUrl: './paint-canvas.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class App extends PaintCanvasBase {
+export class PaintCanvasComponent extends PaintCanvasBase {
   @ViewChild('canvas', { static: true })
   protected readonly canvasRef!: ElementRef<HTMLCanvasElement>;
 }
