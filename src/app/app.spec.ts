@@ -14,10 +14,14 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render the paint workspace', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
+    fixture.detectChanges();
+
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, paint-app');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Sketch, shape and export.');
+    expect(compiled.querySelector('canvas')).toBeTruthy();
+    expect(compiled.textContent).toContain('Export PNG');
   });
 });
