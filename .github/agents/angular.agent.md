@@ -27,10 +27,7 @@ Before making changes:
 ## Instruction Sources
 
 Follow these repository instruction files when they apply:
-
-- .github/copilot-instructions.md
 - .github/instructions/angular.instructions.md
-- .github/instructions/review.instructions.md
 
 Required behavior:
 - Do not assume agent selection means repository instruction files are already loaded.
