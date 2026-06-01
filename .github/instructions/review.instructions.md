@@ -1,41 +1,28 @@
 ---
-applyTo: "**"
+applyTo: '**'
 ---
 
-# Copilot Review Instructions
+# Code Review Rules
 
-Use these instructions when reviewing pull requests in this repository.
+When modifying code:
 
-## Primary Goals
+- Ensure changes do not break existing behavior.
+- Check null handling and edge cases.
+- Avoid unnecessary refactors.
+- Prefer a minimal diff unless redesign is explicitly requested.
+- Highlight risks when architecture or behavior is impacted.
+
+When reviewing changes:
 
 - Focus on correctness, regressions, and broken behavior first.
-- Check Angular and TypeScript code for maintainability, performance, and security issues.
 - Prefer concrete, actionable feedback over vague style comments.
-
-## Review Priorities
-
-1. Bugs, incorrect logic, missing edge-case handling, and broken async flows.
-2. Security issues such as unsafe DOM usage, leaking secrets, or weak input handling.
-3. Performance issues such as unnecessary re-renders, subscriptions, or heavy template work.
-4. Readability and maintainability problems that make future changes risky.
-
-During PR review, also apply rules from Angular coding standards:
-- see angular.instructions.md
-
-## Review Style
-
-- Be concise and direct.
 - Reference the exact file, function, or change when possible.
 - Explain why something is a problem and suggest a fix.
 - If there are no issues, say so clearly.
 
-## Output Format
-
-When reviewing, structure feedback as:
+Use this output format for reviews:
 
 - Summary
 - Issues
 - Positive highlights
 - Overall assessment
-
-Use clear severity labels for issues when helpful, such as critical, warning, or suggestion.
