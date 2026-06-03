@@ -27,12 +27,15 @@ Before making changes:
 ## Instruction Sources
 
 Follow these repository instruction files when they apply:
+
 - .github/instructions/angular.instructions.md
+- .github/instructions/paint-app.instructions.md
 
 Required behavior:
+
 - Do not assume agent selection means repository instruction files are already loaded.
 - Do not wait for the user to ask you to inspect `.github`.
-- Before editing Angular source files, load the applicable repository instruction files first.
+- Before editing Angular source files, load the applicable repository instruction files first, including app-specific instructions when they apply.
 
 ## Angular Defaults
 
