@@ -19,6 +19,11 @@ jobs:
     name: Build Angular App
 
     steps:
+      - name: Intentionally fail build for test
+        run: |
+          echo "This step will fail to test issue creation"
+          exit 1
+
       - uses: actions/checkout@v5
 
       - name: Set up Node.js
